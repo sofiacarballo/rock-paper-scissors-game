@@ -7,10 +7,11 @@ const playerScore = document.getElementById('playerScore');
 const computerScore = document.getElementById('computerScore');
 
 const player = document.getElementById('player');
-const computer = document.getElementById('computer');
+let computer = document.getElementById('computer');
 
 function computerPlay() {
   let computerSelection = values[Math.floor(Math.random() * values.length)];
+  computer.textContent = computerSelection
   return computerSelection;
 }
 
@@ -69,17 +70,13 @@ function displayPlayerChoice(playerChoice) {
   player.textContent = playerChoice;
 }
 
-function displayComputerSelection(computerSelection) {
-  computer.texContent = computerSelection;
-}
-
 const buttons = document.querySelectorAll(".button"); 
 buttons.forEach((button) => {
   button.addEventListener("click", () => {
       playerChoice = button.id;
-      console.log(playRound(playerChoice, computer = computerPlay()));
+      computerChoice = computerPlay();
+      console.log(playRound(playerChoice, computerChoice));
       displayPlayerChoice(playerChoice);
-      displayComputerSelection(computer);
       displayScore();
   });
 });
