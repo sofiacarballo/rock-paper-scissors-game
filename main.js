@@ -1,6 +1,13 @@
 let values = ["rock", "paper", "scissors"];
+
 let playerCounter = 0;
 let computerCounter = 0;
+
+const playerScore = document.getElementById('playerScore');
+const computerScore = document.getElementById('computerScore');
+
+const player = document.getElementById('player');
+const computer = document.getElementById('computer');
 
 function computerPlay() {
   let computerSelection = values[Math.floor(Math.random() * values.length)];
@@ -53,4 +60,28 @@ function game() {
   return 'Tie game'
 }
 
-module.exports = computerPlay, playRound;
+function displayScore() {
+  playerScore.textContent = playerCounter;
+  computerScore.textContent = computerCounter;
+}
+
+function displayPlayerChoice(playerChoice) {
+  player.textContent = playerChoice;
+}
+
+function displayComputerSelection(computerSelection) {
+  computer.texContent = computerSelection;
+}
+
+const buttons = document.querySelectorAll(".button"); 
+buttons.forEach((button) => {
+  button.addEventListener("click", () => {
+      playerChoice = button.id;
+      console.log(playRound(playerChoice, computer = computerPlay()));
+      displayPlayerChoice(playerChoice);
+      displayComputerSelection(computer);
+      displayScore();
+  });
+});
+
+// module.exports = computerPlay, playRound;
