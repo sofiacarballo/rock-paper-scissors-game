@@ -1,4 +1,4 @@
-let values = ["rock", "paper", "scissors"];
+const values = ["rock", "paper", "scissors"];
 
 let playerCounter = 0;
 let computerCounter = 0;
@@ -7,7 +7,19 @@ const playerScore = document.getElementById('playerScore');
 const computerScore = document.getElementById('computerScore');
 
 const player = document.getElementById('player');
-let computer = document.getElementById('computer');
+const computer = document.getElementById('computer');
+
+const roundResult = document.getElementById('round-result');
+
+const winnerSection = document.getElementsByClassName('winner-section')
+const finalWinner = document.getElementById('final-winner');
+const winnerTitle = document.getElementById('winner-title')
+
+const body = document.getElementById('body')
+
+const buttons = document.querySelectorAll('.button'); 
+const playButton = document.getElementById('play'); 
+const restartButton = document.getElementById('restart')
 
 function computerPlay() {
   let computerSelection = values[Math.floor(Math.random() * values.length)];
@@ -17,68 +29,123 @@ function computerPlay() {
 
 function playRound(playerSelection, computerSelection) {
 
-  playerSelection = playerSelection.toLowerCase();
-
   if (playerSelection === computerSelection) {
-    return "Tie round";
+    result = "Tie round"
+    return result;
   }
 
   if (playerSelection === "paper" && computerSelection === "rock") {
     playerCounter++;
-    return "Player wins! Paper beats Rock";
+    result = "Player wins! Paper beats Rock"
+    return result;
   }
 
   if (playerSelection === "scissors" && computerSelection === 'paper') {
     playerCounter++;
-    return "Player wins! Scissors beats Paper";
+    result = "Player wins! Scissors beats Paper"
+    return result;
   }
   
   if (playerSelection === "rock" && computerSelection === 'scissors') {
     playerCounter++;
-    return "Player wins! Rock beats Scissors";
+    result = "Player wins! Rock beats Scissors"
+    return result;
   }
 
   computerCounter++;
-  return "Computer wins!";
+  result = "Computer wins!"
+  return result;
 }
  
-function game() {
-  var roundCounter;
-
-  for (roundCounter = 0; roundCounter < 5; roundCounter++) {
-    var playerSelection = (prompt("Rock, paper or scissors?"));
-    roundResult = playRound(playerSelection, computerPlay());
-    console.log(roundResult);
-    console.log('Computer: '+ computerCounter + '\n' + 'Player: ' + playerCounter)
-  }
-
-  if (playerCounter > computerCounter) {
-    return 'Player wins!'
-  }
-  if (computerCounter > playerCounter) {
-    return 'Computer wins'
-  }
-  return 'Tie game'
-}
-
 function displayScore() {
   playerScore.textContent = playerCounter;
   computerScore.textContent = computerCounter;
 }
 
-function displayPlayerChoice(playerChoice) {
+function displayRound(playerChoice, roundResults) {
   player.textContent = playerChoice;
+  roundResult.textContent = roundResults;
+  displayScore()
 }
 
-const buttons = document.querySelectorAll(".button"); 
+function displayWinner(winner) {
+  winnerTitle.style.visibility = 'visible';
+  finalWinner.style.visibility = 'visible'
+  finalWinner.textContent = winner + ' won the game!';
+  buttons.forEach((button) => {
+    button.style.visibility = 'hidden' });
+  restartButton.style.visibility = 'visible'
+}
+
+function startGame() {
+  return () => {
+    clearCounters()
+    clearDisplay()
+    winnerTitle.style.visibility = 'hidden';
+    finalWinner.style.visibility = 'hidden';
+    restartButton.style.visibility = 'hidden';
+    buttons.forEach((button) => {
+      button.style.visibility = 'visible';
+    });
+    playButton.style.visibility = 'hidden';
+    body.style.visibility = 'visible';
+  };
+}
+
+function makeMovement(button) {
+  return () => {
+    playerChoice = button.id;
+    computerChoice = computerPlay();
+    roundResults = playRound(playerChoice, computerChoice);
+    displayRound(playerChoice, roundResults)
+    checkCounter();
+  };
+}
+
+function checkCounter() {
+  if (playerCounter == 3) {
+    endGame('You');
+  }
+  if (computerCounter == 3) {
+    endGame('Computer');
+  }
+}
+
+function endGame(winner) {
+  displayWinner(winner)
+}
+
+function clearCounters() {
+  playerCounter = 0;
+  computerCounter = 0;
+  displayScore()
+}
+
+function restartGame() {
+  startGame();
+}
+
+function clearDisplay() {
+  player.textContent = ''
+  computer.textContent = ''
+  roundResult.textContent = ''
+}
+
+body.style.visibility = 'hidden';
+winnerTitle.style.visibility = 'hidden';
+restartButton.style.visibility = 'hidden';
+
+playButton.addEventListener('click', startGame());
+restartButton.addEventListener('click', startGame());
+
 buttons.forEach((button) => {
-  button.addEventListener("click", () => {
-      playerChoice = button.id;
-      computerChoice = computerPlay();
-      console.log(playRound(playerChoice, computerChoice));
-      displayPlayerChoice(playerChoice);
-      displayScore();
-  });
+  button.style.visibility = 'hidden' 
+  button.addEventListener('click', makeMovement(button));
 });
+
+
+
+
+
 
 // module.exports = computerPlay, playRound;
