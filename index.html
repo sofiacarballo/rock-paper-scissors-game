@@ -7,33 +7,42 @@
     <script async src="main.js"></script>
   </head>
   <body>
+    <h1>Rock, paper or scissors?</h1>
+    <button id="play">Play</button>
     <button class="button" id="rock">Rock</button>
     <button class="button" id="paper">Paper</button>
     <button class="button" id="scissors">Scissors</button>
 
-    <div>
+    <div id="body">
       <div>
-        <h1>Round choices</h1>
         <div>
-          <p><b>Player choice</b></p>
-          <p id= "player">-</p>
-          <p><b>Computer choice</b></p>
-          <p id="computer">-</p>
+          <h1>Round choices</h1>
+          <div>
+            <p><b>Your choice</b></p>
+            <p id= "player">-</p>
+            <p><b>Computer choice</b></p>
+            <p id="computer">-</p>
+          </div>
+        </div>
+        <div>
+          <h1>Result of the round</h1>
+          <p id="round-result"></p>
         </div>
       </div>
       <div>
-        <h1>Result of the round</h1>
-        <p id="round-result">Here goes the result of the round</p>
+        <h1>Score</h1>
+        <div>
+          <p> Player Score: </p>
+          <p id="playerScore">0</p>
+        </div>
+        <p> Computer Score: </p>
+        <p id="computerScore">0</p>
       </div>
-    </div>
-    <div>
-      <h1>Score</h1>
       <div>
-        <p> Player Score: </p>
-        <p id="playerScore">0</p>
+        <h1 id="winner-title"> Winner </h1>
+        <p id="final-winner"></p>
       </div>
-      <p> Computer Score: </p>
-      <p id="computerScore">0</p>
+      <button id="restart">Play again</button>
     </div>
   </body>
 </html>
