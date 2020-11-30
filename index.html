@@ -3,46 +3,45 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Rock, papers or scissors?</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Bellota&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css">
     <script async src="main.js"></script>
   </head>
   <body>
-    <h1>Rock, paper or scissors?</h1>
-    <button id="play">Play</button>
-    <button class="button" id="rock">Rock</button>
-    <button class="button" id="paper">Paper</button>
-    <button class="button" id="scissors">Scissors</button>
-
+    <header>
+      <h1>Rock, paper or scissors?</h1>
+      <button id="play">Play <i class="fa fa-play"></i></button>
+    </header>
+    <div class="options">
+      <button class="button" id="rock">Rock <i class="far fa-hand-rock"></i></button>
+      <button class="button" id="paper">Paper <i class="far fa-hand-paper"></i></button>
+      <button class="button" id="scissors">Scissors <i class="far fa-hand-scissors"></i></button>
+    </div>
     <div id="body">
-      <div>
+      <div class="choices">
         <div>
-          <h1>Round choices</h1>
-          <div>
-            <p><b>Your choice</b></p>
-            <p id= "player">-</p>
-            <p><b>Computer choice</b></p>
-            <p id="computer">-</p>
-          </div>
+          <p><b> Player Score</b></p>
+          <p id="player-score">0</p>
+          <p id="player-choice"><b>Your choice</b></p>
+          <p id= "player">-</p>
         </div>
         <div>
-          <h1>Result of the round</h1>
-          <p id="round-result"></p>
+          <p><b>Computer Score</b></p>
+          <p id="computer-score">0</p>
+          <p id="computer-choice"><b>Computer choice</b></p>
+          <p id="computer">-</p>
         </div>
       </div>
-      <div>
-        <h1>Score</h1>
-        <div>
-          <p> Player Score: </p>
-          <p id="playerScore">0</p>
-        </div>
-        <p> Computer Score: </p>
-        <p id="computerScore">0</p>
+      <div class="round-result">
+        <p id="round-result"></p>
       </div>
-      <div>
-        <h1 id="winner-title"> Winner </h1>
-        <p id="final-winner"></p>
-      </div>
-      <button id="restart">Play again</button>
+    </div>
+    <div class="winner-section">
+      <p id="final-winner"></p>
+      <button id="restart">Play again <i class="fas fa-redo"></i></button>
     </div>
   </body>
 </html>
