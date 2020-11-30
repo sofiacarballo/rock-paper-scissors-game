@@ -3,8 +3,11 @@ const values = ["rock", "paper", "scissors"];
 let playerCounter = 0;
 let computerCounter = 0;
 
-const playerScore = document.getElementById('playerScore');
-const computerScore = document.getElementById('computerScore');
+const playerElection = document.getElementById('player-choice');
+const computerElection = document.getElementById('computer-choice');
+
+const playerScore = document.getElementById('player-score');
+const computerScore = document.getElementById('computer-score');
 
 const player = document.getElementById('player');
 const computer = document.getElementById('computer');
@@ -13,13 +16,14 @@ const roundResult = document.getElementById('round-result');
 
 const winnerSection = document.getElementsByClassName('winner-section')
 const finalWinner = document.getElementById('final-winner');
-const winnerTitle = document.getElementById('winner-title')
 
 const body = document.getElementById('body')
 
-const buttons = document.querySelectorAll('.button'); 
+const buttons = [...document.querySelectorAll('.button')]; 
 const playButton = document.getElementById('play'); 
 const restartButton = document.getElementById('restart')
+
+choices = [playerElection, computerElection]
 
 function computerPlay() {
   let computerSelection = values[Math.floor(Math.random() * values.length)];
@@ -62,33 +66,40 @@ function displayScore() {
   computerScore.textContent = computerCounter;
 }
 
+function changingDisplay(display, args) {
+  let elements = Array.from(args).flat();
+  elements.forEach((element) => {
+    element.style.display = display;
+  });  
+}
+
+function hideElement(...args) {
+  changingDisplay('none', args);
+}
+
+function showElement(...args) {
+  changingDisplay('block', args); 
+}
+
 function displayRound(playerChoice, roundResults) {
+  showElement(choices);
   player.textContent = playerChoice;
   roundResult.textContent = roundResults;
   displayScore()
 }
 
 function displayWinner(winner) {
-  winnerTitle.style.visibility = 'visible';
-  finalWinner.style.visibility = 'visible'
+  hideElement(choices, body, buttons);
+  showElement(finalWinner, restartButton);
   finalWinner.textContent = winner + ' won the game!';
-  buttons.forEach((button) => {
-    button.style.visibility = 'hidden' });
-  restartButton.style.visibility = 'visible'
 }
 
 function startGame() {
   return () => {
     clearCounters()
     clearDisplay()
-    winnerTitle.style.visibility = 'hidden';
-    finalWinner.style.visibility = 'hidden';
-    restartButton.style.visibility = 'hidden';
-    buttons.forEach((button) => {
-      button.style.visibility = 'visible';
-    });
-    playButton.style.visibility = 'hidden';
-    body.style.visibility = 'visible';
+    hideElement(choices, finalWinner, restartButton, playButton);
+    showElement(buttons, body);
   };
 }
 
@@ -115,14 +126,14 @@ function endGame(winner) {
   displayWinner(winner)
 }
 
+function restartGame() {
+  startGame();
+}
+
 function clearCounters() {
   playerCounter = 0;
   computerCounter = 0;
   displayScore()
-}
-
-function restartGame() {
-  startGame();
 }
 
 function clearDisplay() {
@@ -131,21 +142,15 @@ function clearDisplay() {
   roundResult.textContent = ''
 }
 
-body.style.visibility = 'hidden';
-winnerTitle.style.visibility = 'hidden';
-restartButton.style.visibility = 'hidden';
+hideElement(body, restartButton);
 
 playButton.addEventListener('click', startGame());
 restartButton.addEventListener('click', startGame());
 
 buttons.forEach((button) => {
-  button.style.visibility = 'hidden' 
+  button.style.display = 'none' 
   button.addEventListener('click', makeMovement(button));
 });
-
-
-
-
 
 
 // module.exports = computerPlay, playRound;
