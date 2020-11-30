@@ -1,0 +1,133 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Bellota', cursive;
+    color: #0c343d;     
+    background-image: url(/images/background-light.JPG);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+    position: relative;
+    overflow: visible;
+}
+
+h1 {
+    font-size: 75px;
+    margin-top: 150px;
+}
+
+header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center
+}
+
+.options {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 180px;
+}
+
+button {
+    font-size: 40px;
+    font-family: 'Bellota', cursive;
+    color: white;
+    padding: 20px 70px;
+    text-align: center;
+    justify-self: center;
+    background-color: #a73f38;
+    border-radius: 150px;
+    border: 2px solid;
+    transition: transform .2s;
+}
+
+button:hover {
+    transform: scale(1.5);
+}
+
+#play {
+    margin-top: 180px;
+    transition: transform .2s;
+}
+
+#play:hover, #restart:hover {
+    background-color: #aed8cc;
+    color: #f3a031;
+    border: 2px solid #aed8cc;
+    transform: scale(1.5);
+}
+
+#rock:hover {
+    background-color: #ffc75c;
+    color: #a73f38;
+    border: 2px solid #ffc75c;
+}
+
+#paper:hover {
+    background-color: #f28076;
+    color: #a73f38;
+    border: 2px solid #f28076;
+}
+
+#scissors:hover {
+    background-color: #aed8cc;
+    color: #a73f38;
+    border: 2px solid #aed8cc;
+}
+
+.choices {
+    margin-top: 70px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.round-result {
+    font-size: 50px;
+    margin-top: 70px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.score {
+    font-size: 24px;
+    margin: 80px 70px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+#player-score {
+    margin-bottom: 20px;
+}
+
+#computer-score {
+    margin-bottom: 20px;
+}
+
+.slash {
+    padding-right: 250px;
+    padding-left: 250px
+}
+
+.winner-section {
+    font-size: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#final-winner {
+    margin-bottom: 90px;
+}
