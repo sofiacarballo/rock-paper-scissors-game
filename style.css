@@ -7,7 +7,7 @@
 body {
     font-family: 'Bellota', cursive;
     color: #0c343d;     
-    background-image: url(/images/background-light.JPG);
+    background-image: url(../images/background-light.jpg);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
