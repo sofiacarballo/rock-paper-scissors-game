@@ -34,31 +34,26 @@ function computerPlay() {
 function playRound(playerSelection, computerSelection) {
 
   if (playerSelection === computerSelection) {
-    result = "Tie round"
-    return result;
+    return "Tie round";
   }
 
   if (playerSelection === "paper" && computerSelection === "rock") {
     playerCounter++;
-    result = "Player wins! Paper beats Rock"
-    return result;
+    return "Player wins! Paper beats Rock";
   }
 
-  if (playerSelection === "scissors" && computerSelection === 'paper') {
+  if (playerSelection == "scissors" && computerSelection === "paper") {
     playerCounter++;
-    result = "Player wins! Scissors beats Paper"
-    return result;
+    return "Player wins! Scissors beats Paper";
   }
   
   if (playerSelection === "rock" && computerSelection === 'scissors') {
     playerCounter++;
-    result = "Player wins! Rock beats Scissors"
-    return result;
+    return "Player wins! Rock beats Scissors";
   }
 
   computerCounter++;
-  result = "Computer wins!"
-  return result;
+  return "Computer wins!"
 }
  
 function displayScore() {
@@ -151,6 +146,5 @@ buttons.forEach((button) => {
   button.style.display = 'none' 
   button.addEventListener('click', makeMovement(button));
 });
-
 
 // module.exports = computerPlay, playRound;
